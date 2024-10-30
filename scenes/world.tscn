@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://kot34cu6syau"]
+
+[ext_resource type="PackedScene" uid="uid://8o1wos3wxhhy" path="res://scenes/world_camera.tscn" id="1_hg4r5"]
+[ext_resource type="PackedScene" uid="uid://b4lsemnfate7j" path="res://scenes/flock.tscn" id="2_wqe7o"]
+[ext_resource type="PackedScene" uid="uid://db4wau4rpjpbc" path="res://scenes/boid.tscn" id="3_m5yt5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8el6k"]
+sky_top_color = Color(0.942051, 0.952885, 0.968059, 1)
+ground_bottom_color = Color(0.372549, 0.337255, 0.329412, 1)
+
+[sub_resource type="Sky" id="Sky_7mtjw"]
+sky_material = SubResource("ProceduralSkyMaterial_8el6k")
+
+[sub_resource type="Environment" id="Environment_bw7qv"]
+background_mode = 2
+sky = SubResource("Sky_7mtjw")
+
+[node name="Wold" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bw7qv")
+
+[node name="WorldCamera" parent="." instance=ExtResource("1_hg4r5")]
+transform = Transform3D(0.996416, -0.0320898, -0.0782601, 0, 0.925239, -0.379386, 0.0845837, 0.378026, 0.921923, -0.0558472, 0.516775, 6.62345)
+
+[node name="Flock" parent="." instance=ExtResource("2_wqe7o")]
+boid_scene = ExtResource("3_m5yt5")

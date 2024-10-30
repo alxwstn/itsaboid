@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://db4wau4rpjpbc"]
+
+[ext_resource type="Script" path="res://scripts/boid.gd" id="1_16t7s"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h3ydq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvas7"]
+albedo_color = Color(1, 0.423529, 1, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_gxe1b"]
+material = SubResource("StandardMaterial3D_pvas7")
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="Boid" type="CharacterBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_16t7s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_h3ydq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PrismMesh_gxe1b")
