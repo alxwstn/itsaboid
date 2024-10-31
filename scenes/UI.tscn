@@ -1,0 +1,103 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh0pv5nr688vl"]
+
+[ext_resource type="Script" path="res://scripts/UI.gd" id="1_12dly"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dg4of"]
+bg_color = Color(0.466667, 0.6, 0.6, 0.831373)
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_12dly")
+
+[node name="SettingsBtn" type="Button" parent="."]
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 31.0
+text = "Settings"
+
+[node name="Settings" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dg4of")
+
+[node name="SettingsContainer" type="CenterContainer" parent="Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Settings/SettingsContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Settings/SettingsContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = -35.5
+offset_right = 101.0
+offset_bottom = 35.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings/SettingsContainer/Panel/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/SettingsContainer/Panel/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Settings/SettingsContainer/Panel/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Settings/SettingsContainer/Panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "flock size"
+
+[node name="FlockSizeInput" type="LineEdit" parent="Settings/SettingsContainer/Panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "3"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Settings/SettingsContainer/Panel/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Cancel" type="Button" parent="Settings/SettingsContainer/Panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[node name="Update" type="Button" parent="Settings/SettingsContainer/Panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Update
+"
+
+[node name="BoxContainer" type="BoxContainer" parent="Settings/SettingsContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="SettingsBtn" to="." method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="Settings/SettingsContainer/Panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Settings/SettingsContainer/Panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Update" to="." method="_on_update_pressed"]
