@@ -27,7 +27,7 @@ script = ExtResource("1_uobtu")
 environment = SubResource("Environment_bw7qv")
 
 [node name="WorldCamera" parent="." instance=ExtResource("1_hg4r5")]
-transform = Transform3D(0.999327, -0.0102926, -0.0352078, 0, 0.959827, -0.280594, 0.0366814, 0.280405, 0.959181, 0.2842, 3.36044, 17.2561)
+transform = Transform3D(0.999976, -0.000278127, 0.00693799, 0, 0.999198, 0.0400553, -0.00694356, -0.0400544, 0.999174, 0.676622, 7.46199, 25.1019)
 
 [node name="Flock" parent="." instance=ExtResource("2_wqe7o")]
 boid_scene = ExtResource("3_m5yt5")

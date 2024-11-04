@@ -11,9 +11,7 @@ albedo_color = Color(1, 0.423529, 1, 1)
 material = SubResource("StandardMaterial3D_pvas7")
 size = Vector3(0.2, 0.2, 0.1)
 
-[node name="Boid" type="CharacterBody3D"]
-motion_mode = 1
-slide_on_ceiling = false
+[node name="Boid" type="StaticBody3D"]
 script = ExtResource("1_16t7s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

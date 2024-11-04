@@ -3,9 +3,9 @@ extends Node3D
 @onready var flock = $Flock
 @onready var cage = $Cage
 
-var state = {
+var boidParams = {
 	"boids": [],
-	"turnfactor": 0.2,
+	"turnfactor": 0.5,
 	"visualRange": 20,
 	"protectedRange": 2,
 	"centeringfactor": 0.0005,
@@ -22,8 +22,8 @@ var zbounds = Vector2(-12, 12)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	cage.initialize(xbounds, ybounds, zbounds)
-	flock.reset_boids(state, xbounds, ybounds, zbounds)	
+	flock.reset_boids(boidParams, xbounds, ybounds, zbounds)	
 
-func _on_ui_state_reset(_state):
-	state = _state
-	flock.reset_boids(state, xbounds, ybounds, zbounds)
+func _on_ui_state_reset(_boidParams):
+	boidParams = _boidParams
+	flock.reset_boids(boidParams, xbounds, ybounds, zbounds)
