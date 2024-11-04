@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://db4wau4rpjpbc"]
+[gd_scene load_steps=6 format=3 uid="uid://db4wau4rpjpbc"]
 
 [ext_resource type="Script" path="res://scripts/boid.gd" id="1_16t7s"]
 
@@ -10,6 +10,8 @@ albedo_color = Color(1, 0.423529, 1, 1)
 [sub_resource type="PrismMesh" id="PrismMesh_gxe1b"]
 material = SubResource("StandardMaterial3D_pvas7")
 size = Vector3(0.2, 0.2, 0.1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s3aw6"]
 
 [node name="Boid" type="StaticBody3D"]
 script = ExtResource("1_16t7s")
@@ -23,4 +25,12 @@ transform = Transform3D(9.55343e-16, -6.55671e-08, -1, -0.5, -6.55671e-08, 0, -2
 mesh = SubResource("PrismMesh_gxe1b")
 
 [node name="Ray" type="RayCast3D" parent="."]
+visible = false
 target_position = Vector3(0, 0, 1)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_s3aw6")

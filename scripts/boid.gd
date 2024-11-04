@@ -7,8 +7,8 @@ var v = Vector3(0,0,0)
 
 var boidParams
 @onready
-var ray = $Ray
-const RAY_LENGTH = 2
+var area = $Area3D
+const area_radius = .5
 
 #var boidParams = {
 	#"boids": [],
@@ -27,7 +27,8 @@ const RAY_LENGTH = 2
 func initialize(_boidParams, _position):
 	boidParams = _boidParams
 	position = _position
-	$Ray.target_position = Vector3(0, 0, RAY_LENGTH)
+	var shape = $Area3D/CollisionShape3D.shape
+	shape.radius = area_radius
 #
 func _physics_process(delta):
 	# set up accumulators
@@ -62,24 +63,22 @@ func _physics_process(delta):
 	# from neighbors in the protected range
 	v += close_delta * boidParams["avoidfactor"]
 	
-	# if the boid is on a collision course with our boundaries,
+	# if the boid is within area_radius of our boundaries,
 	# adjust direction by the turning factor
-	# Deviates from classic boids a bit. Could switch from Ray to
-	# an Area3D or us the classic boids margin calculation
-	if ray.is_colliding():
-		var obj = ray.get_collider()
-		if (obj.is_in_group("cage")):
+	if area.has_overlapping_bodies():
+		var bodies = area.get_overlapping_bodies()
+		for obj in bodies:
 			if obj.name == "Ceiling":
 				v[1] -= boidParams["turnfactor"]
 
-			if obj.name == "Floor":
+			elif obj.name == "Floor":
 				v[1] += boidParams["turnfactor"]
 
-			if obj.name == "StageLeft":
+			elif obj.name == "StageLeft":
 				v[0] -= boidParams["turnfactor"]
 				print("STAGELEFT")
 
-			if obj.name == "StageRight":
+			elif obj.name == "StageRight":
 				v[0] += boidParams["turnfactor"]
 
 	# Look where you're going! Scaling made this more immediate *shrug*

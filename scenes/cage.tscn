@@ -15,6 +15,8 @@ size = Vector2(20, 20)
 script = ExtResource("1_y1lvm")
 
 [node name="Floor" type="StaticBody3D" parent="." groups=["cage"]]
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape3D_4bx8y")
@@ -24,6 +26,8 @@ mesh = SubResource("PlaneMesh_h1maf")
 
 [node name="Ceiling" type="StaticBody3D" parent="." groups=["cage"]]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 16, 0)
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ceiling"]
 shape = SubResource("WorldBoundaryShape3D_4bx8y")
@@ -33,6 +37,8 @@ mesh = SubResource("PlaneMesh_h1maf")
 
 [node name="Back" type="StaticBody3D" parent="." groups=["cage"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -8)
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Back"]
 shape = SubResource("WorldBoundaryShape3D_4bx8y")
@@ -42,12 +48,16 @@ mesh = SubResource("PlaneMesh_h1maf")
 
 [node name="Front" type="StaticBody3D" parent="." groups=["cage"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 8)
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Front"]
 shape = SubResource("WorldBoundaryShape3D_4bx8y")
 
 [node name="StageRight" type="StaticBody3D" parent="." groups=["cage"]]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -12, 0, 0)
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StageRight"]
 shape = SubResource("WorldBoundaryShape3D_4bx8y")
@@ -57,6 +67,8 @@ mesh = SubResource("PlaneMesh_h1maf")
 
 [node name="StageLeft" type="StaticBody3D" parent="." groups=["cage"]]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 12, 0, 0)
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StageLeft"]
 shape = SubResource("WorldBoundaryShape3D_4bx8y")
