@@ -3,25 +3,12 @@ extends StaticBody3D
 class_name Boid
 
 # "velocity" of our static body
-var v = Vector3(0,0,0)
+var v = Vector3(randf_range(-1.0, 1.0),randf_range(-1.0, 1.0),0)
 
 var boidParams
 @onready
 var area = $Area3D
 const area_radius = .5
-
-#var boidParams = {
-	#"boids": [],
-	#"turnfactor": 0.2,
-	#"visualRange": 20,
-	#"protectedRange": 2,
-	#"centeringfactor": 0.0005,
-	#"avoidfactor": 0.05,
-	#"matchingfactor": 0.05,
-	#"maxspeed": 3,
-	#"minspeed": 2,
-	#"flockSize": 3
-#}
 
 # inintialize the boid with a reference to the flock parameters
 func initialize(_boidParams, _position):
@@ -76,12 +63,11 @@ func _physics_process(delta):
 
 			elif obj.name == "StageLeft":
 				v[0] -= boidParams["turnfactor"]
-				print("STAGELEFT")
 
 			elif obj.name == "StageRight":
 				v[0] += boidParams["turnfactor"]
 
-	# Look where you're going! Scaling made this more immediate *shrug*
+	# Look where you're going! Scaling this take effect more immediately *shrug*
 	look_at(v*100, Vector3.UP, true)
 	# enforce speed limits
 	var speed = v.length()

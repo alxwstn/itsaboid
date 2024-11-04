@@ -5,14 +5,7 @@ signal state_reset(state)
 var form_state = {
 	"flockSize": "3"
 }
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func _on_cancel_pressed():
 	$Settings.visible = false
@@ -39,7 +32,6 @@ func _on_update_pressed():
 		"maxspeed": 3,
 		"minspeed": 2,
 		"flockSize": (form_state["flockSize"] as int)
-		# add boidBounds
 	}
 	$Settings.visible = false
 	state_reset.emit(state)
