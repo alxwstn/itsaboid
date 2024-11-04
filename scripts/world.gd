@@ -2,6 +2,7 @@ extends Node3D
 
 @onready var flock = $Flock
 @onready var cage = $Cage
+@onready var ui = $UI
 
 var boidParams = {
 	"boids": [],
@@ -23,6 +24,7 @@ var zbounds = Vector2(-12, 12)
 func _ready():
 	cage.initialize(xbounds, ybounds, zbounds)
 	flock.reset_boids(boidParams, xbounds, ybounds, zbounds)	
+	ui.initialize(boidParams)
 
 func _on_ui_state_reset(_boidParams):
 	boidParams = _boidParams
