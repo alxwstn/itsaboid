@@ -3,7 +3,7 @@ extends StaticBody3D
 class_name Boid
 
 # "velocity" of our static body
-var v = Vector3(4,4,0)
+var v = Vector3(0,0,0)
 
 var boidParams
 @onready
@@ -36,19 +36,32 @@ func _physics_process(delta):
 	var close_delta = Vector3(0,0,0)
 	var neighboring_boids = 0
 	
-	#for boid in boidParams["boids"]:
+	for boid in boidParams["boids"]:
+		if boid == self:
+			continue
+		
+		var difference = position - boid.position
+		var distance = abs(difference.length())
+		
+		if distance < boidParams["visualRange"]:
+			if distance < boidParams["protectedRange"]:
+				close_delta += difference
+			else:
+				pos_avg += boid.position
+				vel_avg += boid.v
+				neighboring_boids += 1
+		
+	# add centering and matching velocity contributions from neighbors
+	if neighboring_boids:
+		pos_avg = pos_avg/neighboring_boids
+		vel_avg = vel_avg/neighboring_boids
+		v += ((pos_avg - position)*boidParams["centeringfactor"] + 
+			 (vel_avg - v)*boidParams["matchingfactor"])
 
-	# edge detection adjustments
+	# add the avoidance contribution to velocity
+	# from neighbors in the protected range
+	v += close_delta * boidParams["avoidfactor"]
 	
-	# Look where you're going! Scaling made this more immediate *shrug*
-	look_at(v*100, Vector3.UP, true)
-	# enforce speed limits
-	var speed = v.length()
-	if speed < boidParams["minspeed"]:
-		v = boidParams["minspeed"]*v/speed 
-	elif speed > boidParams["maxspeed"]:
-		v = boidParams["minspeed"]*v/speed 
-
 	# if the boid is on a collision course with our boundaries,
 	# adjust direction by the turning factor
 	# Deviates from classic boids a bit. Could switch from Ray to
@@ -68,6 +81,15 @@ func _physics_process(delta):
 
 			if obj.name == "StageRight":
 				v[0] += boidParams["turnfactor"]
+
+	# Look where you're going! Scaling made this more immediate *shrug*
+	look_at(v*100, Vector3.UP, true)
+	# enforce speed limits
+	var speed = v.length()
+	if speed < boidParams["minspeed"]:
+		v = boidParams["minspeed"]*v/speed 
+	elif speed > boidParams["maxspeed"]:
+		v = boidParams["minspeed"]*v/speed 
 
 	position += v*delta
 

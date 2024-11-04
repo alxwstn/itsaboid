@@ -5,7 +5,7 @@ extends Node3D
 
 var boidParams = {
 	"boids": [],
-	"turnfactor": 0.5,
+	"turnfactor": 0.95,
 	"visualRange": 20,
 	"protectedRange": 2,
 	"centeringfactor": 0.0005,
