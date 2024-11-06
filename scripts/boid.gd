@@ -77,4 +77,3 @@ func _physics_process(delta):
 		v = boidParams["minspeed"]*v/speed 
 
 	position += v*delta
-
